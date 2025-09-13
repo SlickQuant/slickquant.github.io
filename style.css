@@ -79,4 +79,4 @@ a:hover{text-decoration:underline}
   .nav-links{display:none}
   .menu{display:block}
 }
-.formkit-powered-by-convertkit-container{display:none}
+.formkit-powered-by-convertkit-container{display:none !important}
