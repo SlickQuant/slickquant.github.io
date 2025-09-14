@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://slickquant.example/sitemap.xml
+Sitemap: https://slickquant.com/sitemap.xml
