@@ -1,1 +1,177 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'><defs><linearGradient id='bg' x1='0' x2='1'><stop offset='0' stop-color='#F1F5F9'/><stop offset='1' stop-color='#FFFFFF'/></linearGradient></defs><rect width='1200' height='800' fill='url(#bg)'/><g transform='translate(100 80)' fill='none' stroke='#0F3D91' stroke-width='3' opacity='.9'><rect x='0' y='0' width='520' height='320' rx='14'/><rect x='32' y='44' width='456' height='36' rx='8' fill='#E6F2FF' stroke='none'/><rect x='32' y='100' width='456' height='196' rx='10' stroke-dasharray='6 6'/></g><g transform='translate(700 120)'><rect x='0' y='0' width='380' height='260' rx='14' fill='#E6F2FF' stroke='#39A7FF' stroke-width='3'/><polyline points='20,200 90,150 160,180 230,120 300,160 360,80' fill='none' stroke='#0F3D91' stroke-width='4'/></g><text x='100' y='460' font-family='Inter, sans-serif' font-size='24' fill='#334155'>Backtests • Order Book Sim • Equity Curves</text></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <title>SlickQuant Hero Illustration</title>
+  <desc>Glass UI mock: strategy code, backtest chart, and diagnostics in a sleek card with gradients and soft glows.</desc>
+  <defs>
+    <!-- Brand colors -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1223"/>
+      <stop offset="1" stop-color="#0F1B3A"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B2042" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#0E2852" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#039BE5"/>
+      <stop offset="1" stop-color="#73E0FF"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0C2A4F" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#0E345F" stop-opacity="0.8"/>
+    </linearGradient>
+    <!-- Soft glow -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Card shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#93C5FD" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <!-- Monospace font fallback -->
+    <!-- <style> -->
+      <!-- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;600&display=swap'); -->
+      <!-- .ui { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; } -->
+      <!-- .mono { font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; } -->
+    <!-- </style> -->
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="800" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="1200" height="800" fill="url(#grid)"/>
+  <!-- Accent radial glows -->
+  <g filter="url(#glow)" opacity="0.5">
+    <circle cx="980" cy="60" r="240" fill="#039BE5"/>
+    <circle cx="120" cy="120" r="220" fill="#73E0FF" opacity="0.6"/>
+  </g>
+
+  <!-- Main glass card -->
+  <g filter="url(#shadow)">
+    <rect x="120" y="100" rx="24" ry="24" width="960" height="560"
+          fill="url(#cardGrad)" stroke="url(#accentGrad)" stroke-opacity="0.35" stroke-width="1"/>
+    <!-- Subtle top shine -->
+    <rect x="120" y="100" rx="24" ry="24" width="960" height="140"
+          fill="#FFFFFF" opacity="0.03"/>
+  </g>
+
+  <!-- Window header -->
+  <g class="ui">
+    <circle cx="156" cy="134" r="6" fill="#EF4444" opacity="0.8"/>
+    <circle cx="176" cy="134" r="6" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="196" cy="134" r="6" fill="#10B981" opacity="0.8"/>
+    <text x="220" y="140" font-size="16" fill="#D1E8FF" opacity="0.85">SlickQuant — Strategy Research</text>
+  </g>
+
+  <!-- Left pane: code block -->
+  <g transform="translate(150,170)">
+    <rect x="0" y="0" width="430" height="360" rx="16" ry="16" fill="#0A1A34" opacity="0.8"
+          stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <rect x="0" y="0" width="430" height="48" rx="16" ry="16" fill="#0D2446" opacity="0.8"/>
+    <text x="16" y="30" class="ui" font-size="14" fill="#93C5FD">strategy.py</text>
+
+    <g class="mono" font-size="13">
+      <text x="18" y="80" fill="#60A5FA">import</text>
+      <text x="70" y="80" fill="#E5E7EB">numpy</text>
+      <text x="120" y="80" fill="#60A5FA">as</text>
+      <text x="145" y="80" fill="#E5E7EB">np</text>
+
+      <text x="18" y="110" fill="#60A5FA">def</text>
+      <text x="50" y="110" fill="#E5E7EB">alpha(price, vol):</text>
+
+      <text x="36" y="140" fill="#34D399">&quot;&quot;&quot;Momentum with volatility clamp&quot;&quot;&quot;</text>
+      <text x="36" y="170" fill="#E5E7EB">r = np.log(price / price.shift(1))</text>
+      <text x="36" y="200" fill="#E5E7EB">m = r.rolling(20).mean()</text>
+      <text x="36" y="230" fill="#E5E7EB">s = r.rolling(20).std().clip(1e-4, None)</text>
+      <text x="36" y="260" fill="#E5E7EB">z = (m / s).clip(-3, 3)</text>
+      <text x="36" y="290" fill="#E5E7EB">return z.shift(1)</text>
+    </g>
+  </g>
+
+  <!-- Right top: equity curve chart -->
+  <g transform="translate(610,170)">
+    <rect x="0" y="0" width="440" height="260" rx="16" ry="16" fill="#0A1A34" opacity="0.8"
+          stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <text x="18" y="32" class="ui" font-size="14" fill="#93C5FD">Backtest — Equity Curve</text>
+
+    <!-- axes -->
+    <line x1="36" y1="210" x2="400" y2="210" stroke="#93C5FD" stroke-opacity="0.25"/>
+    <line x1="36" y1="70" x2="36" y2="210" stroke="#93C5FD" stroke-opacity="0.25"/>
+
+    <!-- grid lines -->
+    <g stroke="#93C5FD" stroke-opacity="0.08">
+      <line x1="36" y1="170" x2="400" y2="170"/>
+      <line x1="36" y1="130" x2="400" y2="130"/>
+      <line x1="36" y1="90"  x2="400" y2="90"/>
+    </g>
+
+    <!-- performance area -->
+    <path d="M36,190 L76,185 L116,160 L156,170 L196,150 L236,155 L276,120 L316,140 L356,90 L396,100 L396,210 L36,210 Z"
+          fill="#039BE5" opacity="0.18"/>
+    <!-- performance line -->
+    <polyline points="36,190 76,185 116,160 156,170 196,150 236,155 276,120 316,140 356,90 396,100"
+              fill="none" stroke="url(#accentGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- markers -->
+    <g fill="#73E0FF" opacity="0.95">
+      <circle cx="116" cy="160" r="3"/>
+      <circle cx="196" cy="150" r="3"/>
+      <circle cx="276" cy="120" r="3"/>
+      <circle cx="356" cy="90" r="3"/>
+    </g>
+
+    <!-- legend chips -->
+    <g transform="translate(250,16)">
+      <rect x="0" y="0" rx="10" ry="10" width="160" height="24" fill="url(#chipGrad)" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <circle cx="14" cy="12" r="4" fill="url(#accentGrad)"/>
+      <text x="26" y="16" class="ui" font-size="12" fill="#D1E8FF">Strategy PnL</text>
+    </g>
+  </g>
+
+  <!-- Right bottom: diagnostics -->
+  <g transform="translate(610,460)">
+    <rect x="0" y="0" width="440" height="200" rx="16" ry="16" fill="#0A1A34" opacity="0.8"
+          stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <text x="18" y="32" class="ui" font-size="14" fill="#93C5FD">Diagnostics</text>
+
+    <!-- KPI chips -->
+    <g class="ui" font-size="12" fill="#D1E8FF">
+      <g transform="translate(18,56)">
+        <rect x="0" y="0" rx="10" ry="10" width="120" height="32" fill="url(#chipGrad)"/>
+        <text x="12" y="20">Sharpe</text>
+        <text x="72" y="20" font-weight="800">1.92</text>
+      </g>
+      <g transform="translate(150,56)">
+        <rect x="0" y="0" rx="10" ry="10" width="140" height="32" fill="url(#chipGrad)"/>
+        <text x="12" y="20">Max Drawdown</text>
+        <text x="116" y="20" font-weight="800">-7%</text>
+      </g>
+      <g transform="translate(310,56)">
+        <rect x="0" y="0" rx="10" ry="10" width="110" height="32" fill="url(#chipGrad)"/>
+        <text x="12" y="20">Hit Rate</text>
+        <text x="82" y="20" font-weight="800">54%</text>
+      </g>
+    </g>
+
+    <!-- Slippage bar -->
+    <g transform="translate(18,112)">
+      <text x="0" y="0" class="ui" font-size="12" fill="#93C5FD">Slippage / Fees</text>
+      <rect x="0" y="10" width="380" height="10" rx="6" ry="6" fill="#0E345F"/>
+      <rect x="0" y="10" width="210" height="10" rx="6" ry="6" fill="url(#accentGrad)"/>
+    </g>
+  </g>
+
+  <!-- Floating accent nodes -->
+  <g opacity="0.75">
+    <circle cx="210" cy="580" r="6" fill="url(#accentGrad)"/>
+    <circle cx="250" cy="610" r="4" fill="url(#accentGrad)" opacity="0.7"/>
+    <circle cx="300" cy="560" r="8" fill="url(#accentGrad)" opacity="0.6"/>
+  </g>
+</svg>
