@@ -2320,6 +2320,229 @@ h2 {
     font-size: 8px;
   }
 }
+/* Sponsorship supports public open-source development. */
+.main-nav .nav-sponsor {
+  color: #e1c17d;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.main-nav .nav-sponsor:hover {
+  color: #f5dca4;
+}
+.nav-sponsor > span {
+  font-size: 17px;
+  line-height: 1;
+}
+.hero-sponsor-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px auto 0;
+  color: #afc3d6;
+  font-size: 11px;
+}
+.hero-sponsor-link svg {
+  width: 14px;
+  height: 14px;
+  color: #e1c17d;
+  flex-shrink: 0;
+}
+.hero-sponsor-link > span {
+  color: #e1c17d;
+  margin-left: 4px;
+}
+.hero-sponsor-link:hover {
+  color: #f5dca4;
+}
+.sponsorship {
+  background: #0d151f;
+  border-top: 1px solid var(--line);
+}
+.sponsorship .eyebrow {
+  color: #e1c17d;
+}
+.sponsorship-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 110px;
+  align-items: start;
+}
+.sponsor-impact-item {
+  display: flex;
+  gap: 22px;
+  padding: 25px 0;
+  border-bottom: 1px solid #2a3b4c;
+}
+.sponsor-impact-item:first-child {
+  padding-top: 6px;
+}
+.sponsor-impact-item > .mono {
+  color: #d7b979;
+  font-size: 10px;
+  line-height: 2.3;
+  white-space: nowrap;
+}
+.sponsor-impact-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.sponsor-impact-item p {
+  color: #a7bbce;
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 365px;
+}
+.sponsor-public-note {
+  color: #a5b9cc;
+  font-size: 11px;
+  line-height: 1.9;
+  margin-top: 23px;
+  max-width: 410px;
+}
+.sponsor-card {
+  padding: 31px;
+  background: #16212c;
+  border: 1px solid #685a3e;
+  border-radius: 8px;
+  min-width: 0;
+}
+.sponsor-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+.sponsor-card-top > .mono {
+  color: #e4c887;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+}
+.sponsor-card-top svg {
+  color: #e1c17d;
+  width: 29px;
+  height: 29px;
+}
+.sponsor-card h3 {
+  font-size: 29px;
+  letter-spacing: -0.9px;
+  line-height: 1.3;
+  margin-bottom: 19px;
+}
+.sponsor-card > p {
+  font-size: 13px;
+  color: #b3c3d2;
+  line-height: 1.9;
+}
+.sponsor-cadence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-block: 23px 26px;
+  font-size: 11px;
+  color: #c4d1dd;
+}
+.sponsor-cadence > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.sponsor-cadence > span > span {
+  color: #e1c17d;
+  font-size: 15px;
+}
+.button-sponsor {
+  width: 100%;
+  background: #e1c17d;
+  color: #17202a;
+  justify-content: space-between;
+}
+.button-sponsor:hover {
+  background: #f0d59f;
+}
+.sponsor-card > .sponsor-card-note {
+  margin-top: 14px;
+  font-size: 10px;
+  color: #aabdce;
+}
+@media (max-width: 1150px) {
+  .sponsorship-layout {
+    gap: 65px;
+  }
+}
+@media (max-width: 800px) {
+  .sponsorship-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .sponsor-card {
+    padding: 25px;
+  }
+  .sponsor-card h3 {
+    font-size: 25px;
+  }
+  .sponsor-card > p {
+    font-size: 12px;
+  }
+  .sponsor-impact-item {
+    gap: 15px;
+  }
+  .sponsor-impact-item h3 {
+    font-size: 14px;
+  }
+  .sponsor-cadence {
+    gap: 16px;
+  }
+  .main-nav:not(.nav-enhanced) {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 600px) {
+  .hero-sponsor-link {
+    font-size: 10px;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .sponsorship-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .sponsor-impact-item {
+    padding-block: 21px;
+    gap: 16px;
+  }
+  .sponsor-impact-item h3 {
+    font-size: 15px;
+  }
+  .sponsor-impact-item p {
+    font-size: 12px;
+  }
+  .sponsor-public-note {
+    font-size: 10px;
+  }
+  .sponsor-card {
+    padding: 26px 24px;
+  }
+  .sponsor-card h3 {
+    font-size: 28px;
+  }
+  .sponsor-card > p {
+    font-size: 12px;
+  }
+  .sponsor-card-top {
+    margin-bottom: 24px;
+  }
+  .sponsor-card > .sponsor-card-note {
+    font-size: 9px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

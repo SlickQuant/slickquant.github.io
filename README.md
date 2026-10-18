@@ -29,6 +29,12 @@ To add a project, copy a `.project-card` in `index.html`, update its repository 
 
 Project descriptions are grounded in the [SlickQuant public organization profile](https://github.com/SlickQuant#readme) and linked repository READMEs. Installation commands follow the [slick-queue documentation](https://github.com/SlickQuant/slick-queue#installation). Check current project documentation before changing capability or compatibility claims.
 
+## Sponsorship
+
+The homepage’s `#sponsorship` section explains support for public maintenance, documentation, and continued development. Links in the navigation, hero, community section, and footer lead to it. The **Become a sponsor** button opens [Slick Quant on GitHub Sponsors](https://github.com/sponsors/SlickQuant), where visitors can choose monthly or one-time contributions.
+
+Payments are handled on GitHub Sponsors. The site does not advertise consulting, paid services, support commitments, or sponsorship tiers and perks.
+
 ## Email subscriptions
 
 The homepage retains the existing Kit form endpoint (`8552368`). Kit handles subscriptions and confirmation emails; there is no local backend. Configure the hosted form’s redirect to `thanks.html` or `check-email.html` as appropriate for its opt-in settings. Those pages are excluded from the sitemap and marked `noindex`.
