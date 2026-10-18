@@ -22,6 +22,7 @@ Open <http://127.0.0.1:8000>. You can also open `index.html` directly.
 - `assets/logo-web.png`: optimized website version, also embedded in the SVG containers.
 - `assets/branding.md`: logo preparation details and the background-removal prompt.
 - `assets/logo.svg`, `assets/logo-dark.svg`, `assets/logo_llc.svg`, and `assets/favicon.svg`: SVG containers using the same monogram. `assets/favicon.png` is the browser icon. Header, footer, community logos, and the favicon have transparent backgrounds; the standalone company lockup retains a light backing.
+- `assets/logo-dark.svg`: dark-background display variant with brighter navy tones; the source artwork and gold finish are preserved.
 - `assets/fonts/`: self-hosted Manrope font and its SIL Open Font License. No external font requests.
 - `assets/social-card.svg`: editable source for the 1200 × 630 social sharing image, `assets/social-card.png`.
 

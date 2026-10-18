@@ -227,6 +227,7 @@ input:focus-visible {
   object-fit: contain;
   width: 42px;
   height: 46px;
+  filter: drop-shadow(0 0 0.5px #acd4f566) drop-shadow(0 0 5px #5794c52b);
 }
 .brand-light {
   font-weight: 500;
@@ -1229,7 +1230,7 @@ h2 {
   width: 132px;
   height: 144px;
   object-fit: contain;
-  filter: drop-shadow(0 0 25px #d9b76720);
+  filter: drop-shadow(0 0 0.6px #acd4f54d) drop-shadow(0 0 25px #d9b76720);
 }
 .art-bracket {
   font-family: var(--mono);
