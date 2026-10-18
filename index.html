@@ -1,238 +1,1205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SlickQuant — AI Quant Copilot</title>
-  <meta name="description" content="Research, backtest, and deploy systematic strategies with an AI Quant Copilot built for students, retail traders, and small teams." />
-  <meta name="theme-color" content="#0F3D91" />
-  <meta property="og:title" content="SlickQuant — AI Quant Copilot" />
-  <meta property="og:description" content="Research, backtest, and deploy systematic strategies with an AI Quant Copilot." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://slickquant.com" />
-  <meta property="og:image" content="https://slickquant.com/assets/og-image.png" />
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SlickQuant — AI Quant Copilot">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://slickquant.com/assets/og-image.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <style>
-    :root{--sq-primary:#133d6a;--sq-secondary:#039BE5;--sq-accent:#73E0FF}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15)}
-    .grad-text{background:linear-gradient(90deg,var(--sq-secondary),var(--sq-accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .btn-primary{background:linear-gradient(135deg,var(--sq-primary),var(--sq-secondary)); color:#fff}
-    .ring-grad{position:relative}
-    .ring-grad:before{content:"";position:absolute;inset:-1px;border-radius:1rem;padding:1px;background:linear-gradient(135deg,#fff3,rgba(115,224,255,.5));-webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude}
-    .hero-bg{position:absolute;inset:0;background:radial-gradient(1200px 600px at 80% -20%, #39A7FF22 0%, transparent 60%), radial-gradient(1000px 600px at -10% -10%, #73E0FF22, transparent 60%)}
-    .grid-overlay{background-image:url('assets/grid.svg');background-size:28px 28px;mask-image:radial-gradient(ellipse at center,rgba(0,0,0,.25),transparent 70%)}
-    .fade-up{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
-    .fade-up.show{opacity:1; transform: translateY(0)}
-    @media (prefers-reduced-motion:no-preference){
-      .float{animation: float 8s ease-in-out infinite}
-      @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
-      .glow{box-shadow:0 0 0 0 rgba(57,167,255,.45); animation:pulse 3s infinite}
-      @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(57,167,255,.35)}70%{box-shadow:0 0 0 20px rgba(57,167,255,0)}100%{box-shadow:0 0 0 0 rgba(57,167,255,0)}}
-    }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100">
-  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-slate-950/60 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <img src="assets/logo.svg" alt="SlickQuant logo" class="w-9 h-9">
-        <div class="leading-tight">
-          <div class="text-sky-600 font-extrabold tracking-widest text-sm">SLICK</div>
-          <div class="text-sky-400 font-extrabold tracking-widest text-sm">QUANT</div>
-        </div>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
-        <a href="#features" class="hover:text-white">Features</a>
-        <a href="#how" class="hover:text-white">How it works</a>
-        <a href="#pricing" class="hover:text-white">Pricing</a>
-        <a href="#faq" class="hover:text-white">FAQ</a>
-        <a href="#waitlist" class="px-4 py-2 rounded-xl btn-primary hover:opacity-90">Join waitlist</a>
-      </nav>
-      <button id="menuBtn" class="md:hidden rounded-lg border border-white/10 px-3 py-2">Menu</button>
-    </div>
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/5 bg-slate-950/80">
-      <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-slate-300">
-        <a href="#features" class="hover:text-white">Features</a>
-        <a href="#how" class="hover:text-white">How it works</a>
-        <a href="#pricing" class="hover:text-white">Pricing</a>
-        <a href="#faq" class="hover:text-white">FAQ</a>
-        <a href="#waitlist" class="px-4 py-2 rounded-xl btn-primary text-center hover:opacity-90">Join waitlist</a>
-      </nav>
-    </div>
-  </header>
-  <section class="relative overflow-hidden">
-    <div class="hero-bg pointer-events-none"></div>
-    <div class="grid-overlay absolute inset-0 opacity-[0.18]"></div>
-    <div class="max-w-7xl mx-auto px-4 py-20 md:py-28 relative">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div class="space-y-6 fade-up">
-          <div class="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-sky-300 border border-white/10">
-            <span class="w-2 h-2 bg-sky-400 rounded-full glow"></span>
-            Private beta forming now
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slick Quant — Trading technology, built in the open</title>
+    <meta
+      name="description"
+      content="An open-source ecosystem for trading systems. Explore Slick Quant's C++ trading engine, exchange simulator, SDKs, infrastructure, and Python interoperability."
+    />
+    <meta name="theme-color" content="#0a0f16" />
+    <link rel="canonical" href="https://slickquant.com/" />
+    <meta
+      property="og:title"
+      content="Slick Quant — Your trading stack. Built in the open."
+    />
+    <meta
+      property="og:description"
+      content="Trading engines, exchange simulation, and the infrastructure underneath. Modern C++ at the core. Python in the loop."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://slickquant.com/" />
+    <meta
+      property="og:image"
+      content="https://slickquant.com/assets/social-card.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Slick Quant. Your trading stack. Built in the open."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Slick Quant — Your trading stack. Built in the open."
+    />
+    <meta
+      name="twitter:description"
+      content="Open-source trading engines, exchange simulation, SDKs, and infrastructure."
+    />
+    <meta
+      name="twitter:image"
+      content="https://slickquant.com/assets/social-card.png"
+    />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="assets/fonts/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./" aria-label="Slick Quant home"
+          ><img src="assets/logo-dark.svg" alt="" width="32" height="36" /><span
+            >slick<span class="brand-light">quant</span
+            ><span class="brand-period">.</span></span
+          ></a
+        ><button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          Menu <span class="menu-bars" aria-hidden="true"></span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="#platform">The stack</a><a href="#ecosystem">Projects</a
+          ><a href="#get-started">Get started</a
+          ><a class="nav-github" href="https://github.com/SlickQuant"
+            ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+              /></svg
+            ><span>GitHub</span><span aria-hidden="true">↗</span></a
+          >
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+          <div class="hero-label">
+            <span class="status-dot" aria-hidden="true"></span
+            ><span>OPEN SOURCE. BUILT IN PUBLIC.</span>
           </div>
-          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-            The <span class="grad-text">AI Quant Copilot</span> for fast research and robust execution
+          <h1 id="hero-title">
+            Your trading stack.<br /><span>Built in the open.</span>
           </h1>
-          <p class="text-slate-300/90 text-lg">Go from idea → backtest → live trading with an AI research agent, microstructure simulator, and clean broker integrations.</p>
-          <div class="flex flex-wrap gap-3">
-            <a href="#waitlist" class="btn-primary px-5 py-3 rounded-xl font-semibold">Join the waitlist</a>
-            <a href="#features" class="px-5 py-3 rounded-xl border border-white/10 hover:bg-white/5">Explore features</a>
+          <p class="hero-description">
+            Trading engines, exchange simulation, and the infrastructure
+            underneath. Build with modern C++, connect with Python, and make the
+            stack your own.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#ecosystem"
+              >Explore the ecosystem <span aria-hidden="true">↗</span></a
+            ><a
+              class="button button-secondary"
+              href="https://github.com/SlickQuant"
+              ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                />
+              </svg>
+              View on GitHub</a
+            >
           </div>
-          <div class="flex flex-wrap gap-2 text-slate-400 text-sm">
-            <span class="px-2 py-1 rounded-full bg-white/5 border border-white/10">Backtesting</span>
-            <span class="px-2 py-1 rounded-full bg-white/5 border border-white/10">AI Strategy Research</span>
-            <span class="px-2 py-1 rounded-full bg-white/5 border border-white/10">Exchange Simulator</span>
-            <span class="px-2 py-1 rounded-full bg-white/5 border border-white/10">Live Trading</span>
-          </div>
-        </div>
-        <div class="relative fade-up float">
-          <div class="absolute -inset-4 bg-gradient-to-br from-sky-500/20 to-cyan-300/10 blur-3xl rounded-3xl"></div>
-          <div class="relative ring-grad rounded-2xl glass p-4">
-            <img src="assets/hero-illustration.svg" alt="SlickQuant mock UI" class="rounded-xl border border-white/10">
-            <div class="mt-4 grid grid-cols-3 gap-3 text-xs text-slate-300/80">
-              <div class="glass rounded-xl p-3 border border-white/10">
-                <div class="text-slate-200 font-semibold">Alpha Ideas</div>
-                <div>Generate & vet signals</div>
+          <figure class="system-map">
+            <div class="map-topline">
+              <span class="mono"
+                ><span class="map-cross" aria-hidden="true">+</span> THE SLICK
+                QUANT STACK</span
+              ><span class="map-tag mono">COMPOSABLE BY DESIGN</span>
+            </div>
+            <svg
+              class="map-svg"
+              viewBox="0 0 1120 310"
+              role="group"
+              aria-label="Explore the components of an illustrative trading architecture"
+            >
+              <defs>
+                <pattern
+                  id="map-grid"
+                  width="24"
+                  height="24"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M24 0H0V24"
+                    fill="none"
+                    stroke="#253241"
+                    stroke-width=".6"
+                  />
+                </pattern>
+                <linearGradient id="bus-fill" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#19344d" />
+                  <stop offset="1" stop-color="#122536" />
+                </linearGradient>
+              </defs>
+              <rect
+                width="1120"
+                height="310"
+                fill="url(#map-grid)"
+                opacity=".5"
+              />
+              <g
+                class="map-wires"
+                fill="none"
+                stroke="#354c60"
+                stroke-width="1.2"
+              >
+                <path d="M255 87H330L370 137H440" />
+                <path d="M255 218H330L370 168H440" />
+                <path d="M680 137H750L790 87H865" />
+                <path d="M680 168H750L790 218H865" />
+                <path d="M560 195V265H930" />
+                <path d="M560 265H185" />
+              </g>
+              <g
+                class="map-packets"
+                fill="none"
+                stroke="#5cb9ff"
+                stroke-width="2"
+              >
+                <path d="M255 87H330L370 137H440" />
+                <path d="M680 168H750L790 218H865" />
+              </g>
+              <a
+                class="map-node"
+                href="#ecosystem"
+                data-project-category="sdk"
+                aria-label="Explore exchange SDKs"
+              >
+                <rect x="55" y="49" width="200" height="76" rx="6" />
+                <text x="77" y="76" class="map-micro">01 / CONNECT</text>
+                <text x="77" y="101" class="map-node-title">Exchange SDKs</text>
+                <text x="227" y="101" class="map-node-arrow">↗</text>
+              </a>
+              <a
+                class="map-node"
+                href="#ecosystem"
+                data-project-category="trading"
+                aria-label="Explore exchange simulation"
+              >
+                <rect x="55" y="180" width="200" height="76" rx="6" />
+                <text x="77" y="207" class="map-micro">02 / SIMULATE</text>
+                <text x="77" y="232" class="map-node-title">
+                  Exchange simulation
+                </text>
+              </a>
+              <a
+                class="map-node map-core"
+                href="#ecosystem"
+                data-project-category="infrastructure"
+                aria-label="Explore messaging and infrastructure"
+              >
+                <rect x="440" y="103" width="240" height="92" rx="7" />
+                <text x="560" y="132" text-anchor="middle" class="map-micro">
+                  THE CONNECTIVE LAYER
+                </text>
+                <text
+                  x="560"
+                  y="162"
+                  text-anchor="middle"
+                  class="map-core-title"
+                >
+                  Queues &amp; streams
+                </text>
+                <circle cx="560" cy="183" r="2" fill="#71c5ff" />
+              </a>
+              <a
+                class="map-node"
+                href="#ecosystem"
+                data-project-category="trading"
+                aria-label="Explore the trading engine"
+              >
+                <rect x="865" y="49" width="200" height="76" rx="6" />
+                <text x="887" y="76" class="map-micro">03 / BUILD</text>
+                <text x="887" y="101" class="map-node-title">
+                  Strategy &amp; execution
+                </text>
+              </a>
+              <a
+                class="map-node"
+                href="#ecosystem"
+                data-project-category="python"
+                aria-label="Explore Python interoperability"
+              >
+                <rect x="865" y="180" width="200" height="76" rx="6" />
+                <text x="887" y="207" class="map-micro">
+                  04 / CONNECT PROCESSES
+                </text>
+                <text x="887" y="232" class="map-node-title">C++ ↔ Python</text>
+                <text x="1037" y="232" class="map-node-arrow">↗</text>
+              </a>
+              <g class="map-footnote">
+                <rect
+                  x="393"
+                  y="251"
+                  width="334"
+                  height="29"
+                  rx="3"
+                  fill="#0e1823"
+                />
+                <text x="560" y="270" text-anchor="middle">
+                  LOGGING · NETWORKING · LATENCY INSTRUMENTATION
+                </text>
+              </g>
+              <g fill="#5cb9ff">
+                <circle cx="330" cy="87" r="2.5" />
+                <circle cx="790" cy="218" r="2.5" />
+                <circle cx="185" cy="265" r="2.5" />
+                <circle cx="930" cy="265" r="2.5" />
+              </g>
+            </svg>
+            <div class="mobile-map">
+              <a href="#ecosystem" data-project-category="sdk"
+                ><span class="mono">01 / CONNECT</span
+                ><strong
+                  >Exchange SDKs <span aria-hidden="true">↗</span></strong
+                ></a
+              >
+              <div class="mobile-map-connector" aria-hidden="true"></div>
+              <a
+                class="mobile-map-core"
+                href="#ecosystem"
+                data-project-category="infrastructure"
+                ><span class="mono">THE CONNECTIVE LAYER</span
+                ><strong
+                  >Queues &amp; streams
+                  <span aria-hidden="true">↗</span></strong
+                ></a
+              >
+              <div class="mobile-map-connector" aria-hidden="true"></div>
+              <div class="mobile-map-branches">
+                <a href="#ecosystem" data-project-category="trading"
+                  ><span class="mono">BUILD &amp; SIMULATE</span
+                  ><strong>Trading systems</strong></a
+                ><a href="#ecosystem" data-project-category="python"
+                  ><span class="mono">CONNECT PROCESSES</span
+                  ><strong>C++ ↔ Python</strong></a
+                >
               </div>
-              <div class="glass rounded-xl p-3 border border-white/10">
-                <div class="text-slate-200 font-semibold">Diagnostics</div>
-                <div>Slippage/fees/borrow</div>
-              </div>
-              <div class="glass rounded-xl p-3 border border-white/10">
-                <div class="text-slate-200 font-semibold">Deploy</div>
-                <div>Risk-guarded live</div>
-              </div>
+              <p class="mono">LOGGING · NETWORKING · LATENCY</p>
+            </div>
+            <figcaption>
+              <span>Use a single library. Build a connected system.</span
+              ><span class="mono"
+                >ILLUSTRATIVE ARCHITECTURE
+                <span aria-hidden="true">↗</span></span
+              >
+            </figcaption>
+          </figure>
+          <div class="hero-facts">
+            <div>
+              <strong>21</strong><span>building blocks to explore</span>
+            </div>
+            <div><strong>C++</strong><span>native at the core</span></div>
+            <div>
+              <strong>Python</strong
+              ><span>connected through shared memory</span>
+            </div>
+            <div>
+              <strong>Open source</strong
+              ><span>read it, use it, build on it</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section id="features" class="py-20 md:py-24">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-10 fade-up">What you can do with SlickQuant</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <h3 class="font-bold text-xl mb-2">AI Research Agent</h3>
-          <p class="text-slate-300">Brainstorm alphas, generate Python/C++/Rust code, and auto-instrument experiments with guardrails.</p>
+      </section>
+      <section
+        id="platform"
+        class="platform section-pad container"
+        aria-labelledby="platform-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / FROM CONNECTION TO EXECUTION</p>
+            <h2 id="platform-title">Build the system<br />you have in mind.</h2>
+          </div>
+          <p>
+            Develop a strategy, put it through a simulator, and choose the
+            components underneath. Every layer has a place in the ecosystem.
+          </p>
         </div>
-        <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <h3 class="font-bold text-xl mb-2">Backtesting & Analytics</h3>
-          <p class="text-slate-300">Event-driven backtests with realistic microstructure, slippage, fees, and borrow.</p>
+        <div class="flagship-grid">
+          <article class="flagship flagship-trader">
+            <div class="flagship-top">
+              <span class="mono"
+                ><span class="small-square" aria-hidden="true"></span>
+                SLICK-TRADER</span
+              ><span class="mini-tag">C++23</span>
+            </div>
+            <h3>Your strategy.<br />A place to run.</h3>
+            <p>
+              A trading engine with strategy plugins, pre-trade risk checks,
+              position tracking, and a live dashboard.
+            </p>
+            <a
+              class="text-link"
+              href="https://github.com/SlickQuant/slick-trader"
+              >Explore the engine <span aria-hidden="true">↗</span></a
+            >
+            <div class="engine-visual" aria-label="Trading engine components">
+              <div class="visual-title mono">
+                <span>TRADING ENGINE</span><span aria-hidden="true">⎯ □ ×</span>
+              </div>
+              <div class="engine-route">
+                <span>Market data</span><span aria-hidden="true">→</span
+                ><strong>Strategy plugins</strong>
+              </div>
+              <div class="engine-route">
+                <span>Order events</span><span aria-hidden="true">→</span
+                ><strong>Positions &amp; PnL</strong>
+              </div>
+              <div class="engine-route">
+                <span>Risk checks</span><span aria-hidden="true">→</span
+                ><strong>Order routing</strong>
+              </div>
+              <div class="visual-bottom mono">
+                <span class="status-dot" aria-hidden="true"></span> COMPOSE YOUR
+                OWN WORKFLOW
+              </div>
+            </div>
+          </article>
+          <article class="flagship flagship-sim">
+            <div class="flagship-top">
+              <span class="mono"
+                ><span class="small-square" aria-hidden="true"></span>
+                SLICK-SIM</span
+              ><span class="mini-tag">C++</span>
+            </div>
+            <h3>Test the behavior.<br />Before the trade.</h3>
+            <p>
+              Test trading clients against a FIFO matching engine and simulated
+              exchange APIs, with optional live market data.
+            </p>
+            <a class="text-link" href="https://github.com/SlickQuant/slick-sim"
+              >Explore the simulator <span aria-hidden="true">↗</span></a
+            >
+            <div
+              class="sim-visual"
+              aria-label="A conceptual exchange simulation workflow"
+            >
+              <div class="visual-title mono">
+                <span>EXCHANGE SIMULATION</span
+                ><span aria-hidden="true">⎯ □ ×</span>
+              </div>
+              <div class="simulation-route">
+                <div>
+                  <svg
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M7 7h18v18H7zM11 13h10m-10 6h10M16 3v4m0 18v4M3 16h4m18 0h4"
+                    /></svg
+                  ><strong>Your client</strong
+                  ><span>Orders &amp; requests</span>
+                </div>
+                <span class="sim-arrow" aria-hidden="true">⇄</span>
+                <div>
+                  <svg
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m6 10 10-5 10 5-10 5-10-5Zm0 6 10 5 10-5M6 22l10 5 10-5"
+                    /></svg
+                  ><strong>Matching engine</strong
+                  ><span>Fills &amp; market events</span>
+                </div>
+              </div>
+              <div class="visual-bottom mono">
+                <span class="status-dot" aria-hidden="true"></span> A TEST
+                ENVIRONMENT YOU CONTROL
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <h3 class="font-bold text-xl mb-2">Exchange Simulator</h3>
-          <p class="text-slate-300">C++ matching engine sim for CME/ICE/Eurex; stress strategies before they touch the market.</p>
+        <div class="sdk-line">
+          <span class="mono">CONNECT TO THE MARKET</span>
+          <div>
+            <a href="https://github.com/SlickQuant/alpaca-cpp"
+              >Alpaca <span aria-hidden="true">↗</span></a
+            ><a href="https://github.com/SlickQuant/coinbase-advanced-cpp"
+              >Coinbase <span aria-hidden="true">↗</span></a
+            ><a href="https://github.com/SlickQuant/hyperliquid-cpp"
+              >Hyperliquid <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <span>C++ SDKs for trading, data &amp; accounts</span>
         </div>
-      </div>
-    </div>
-  </section>
-  <section id="how" class="py-20 md:py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-10 fade-up">How it works</h2>
-      <ol class="grid md:grid-cols-3 gap-6">
-        <li class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <div class="text-sky-300 font-extrabold text-sm tracking-widest mb-2">STEP 1</div>
-          <div class="font-semibold text-lg mb-1">Ideate</div>
-          <p class="text-slate-300">Describe a strategy; the AI agent drafts code, tests, and evaluation criteria.</p>
-        </li>
-        <li class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <div class="text-sky-300 font-extrabold text-sm tracking-widest mb-2">STEP 2</div>
-          <div class="font-semibold text-lg mb-1">Validate</div>
-          <p class="text-slate-300">Run robust backtests and microstructure sims, review diagnostics and risk.</p>
-        </li>
-        <li class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <div class="text-sky-300 font-extrabold text-sm tracking-widest mb-2">STEP 3</div>
-          <div class="font-semibold text-lg mb-1">Deploy</div>
-          <p class="text-slate-300">Connect a broker/exchange, set risk guards, and ship with confidence.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-  <section id="waitlist" class="py-20 md:py-24">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 fade-up">Join the private beta</h2>
-      <p class="text-slate-300 mb-8 fade-up">No spam. Occasional product updates, early access invites, and roadmap notes.</p>
-      <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-        <!-- BEGIN: ConvertKit HTML-only (no pop-ups) -->
-        <form
-          action="https://app.kit.com/forms/8552368/subscriptions"
-          method="post"
-          class="grid md:grid-cols-[1fr_auto] gap-3"
-        >
-          <input
-            class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-sky-500"
-            type="email"
-            name="email_address"
-            placeholder="you@example.com"
-            aria-label="Email address"
-            required
+      </section>
+      <section
+        id="ecosystem"
+        class="ecosystem section-pad"
+        aria-labelledby="ecosystem-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 / THE BUILDING BLOCKS</p>
+              <h2 id="ecosystem-title">
+                Find your next<br />piece of the stack.
+              </h2>
+            </div>
+            <p>
+              Trading systems up top. Messaging, networking, and observability
+              below. Use the components independently or put them to work
+              together.
+            </p>
+          </div>
+          <div class="explorer-controls" hidden>
+            <div
+              class="filter-list"
+              role="group"
+              aria-label="Filter projects by category"
+            >
+              <button
+                type="button"
+                class="filter-button"
+                data-filter="trading"
+                aria-pressed="true"
+              >
+                Trading systems</button
+              ><button
+                type="button"
+                class="filter-button"
+                data-filter="sdk"
+                aria-pressed="false"
+              >
+                Exchange SDKs</button
+              ><button
+                type="button"
+                class="filter-button"
+                data-filter="infrastructure"
+                aria-pressed="false"
+              >
+                Infrastructure</button
+              ><button
+                type="button"
+                class="filter-button"
+                data-filter="python"
+                aria-pressed="false"
+              >
+                Python</button
+              ><button
+                type="button"
+                class="filter-button"
+                data-filter="all"
+                aria-pressed="false"
+              >
+                All projects
+              </button>
+            </div>
+            <label class="project-search"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m16 16 5 5" /></svg
+              ><span class="sr-only">Search all projects</span
+              ><input
+                id="project-search"
+                type="search"
+                placeholder="Search projects…"
+                autocomplete="off"
+            /></label>
+          </div>
+          <div class="explorer-meta">
+            <p id="project-count" role="status" aria-live="polite">
+              21 open-source projects
+            </p>
+            <span class="mono">CODE. DOCUMENTATION. POSSIBILITIES.</span>
+          </div>
+          <div class="project-grid" id="project-grid">
+            <a
+              class="project-card featured-project"
+              data-category="trading"
+              href="https://github.com/SlickQuant/slick-trader"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">↗</span
+                ><span class="project-tag">Trading engine</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-trader</h3>
+              <p>
+                Strategy plugins, positions, risk checks, and a live dashboard
+                in one C++ engine.
+              </p>
+              <span class="project-language"
+                >C++23 <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="trading"
+              href="https://github.com/SlickQuant/slick-sim"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⌘</span
+                ><span class="project-tag">Exchange simulation</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-sim</h3>
+              <p>
+                A matching engine and exchange-facing APIs for testing your
+                trading clients.
+              </p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="trading"
+              href="https://github.com/SlickQuant/slick-orderbook"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">≡</span
+                ><span class="project-tag">Market data</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-orderbook</h3>
+              <p>
+                Multi-instrument order books. Price levels through individual
+                orders.
+              </p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="trading"
+              href="https://github.com/SlickQuant/slick-stacker"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">☷</span
+                ><span class="project-tag">Order management</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-stacker</h3>
+              <p>
+                Maintain an order ladder as fills and acknowledgements arrive.
+              </p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="trading"
+              href="https://github.com/SlickQuant/slick-ladder"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">▥</span
+                ><span class="project-tag">Trading interfaces</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-ladder</h3>
+              <p>Price ladder interfaces for web, WebAssembly, and desktop.</p>
+              <span class="project-language"
+                >Web · WASM · Desktop <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="sdk"
+              href="https://github.com/SlickQuant/alpaca-cpp"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">↔</span
+                ><span class="project-tag">Exchange SDK</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>alpaca-cpp</h3>
+              <p>Alpaca trading, market data, and streaming APIs.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="sdk"
+              href="https://github.com/SlickQuant/coinbase-advanced-cpp"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">↔</span
+                ><span class="project-tag">Exchange SDK</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>coinbase-advanced-cpp</h3>
+              <p>Coinbase Advanced Trade over REST and WebSocket.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="sdk"
+              href="https://github.com/SlickQuant/hyperliquid-cpp"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">↔</span
+                ><span class="project-tag">Exchange SDK</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>hyperliquid-cpp</h3>
+              <p>Hyperliquid API access with native EIP-712 signing.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-queue"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⇥</span
+                ><span class="project-tag">Messaging</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-queue</h3>
+              <p>Lock-free MPMC queues with optional shared memory.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-stream-buffer"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">≋</span
+                ><span class="project-tag">Messaging</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-stream-buffer</h3>
+              <p>Single-producer byte streams for multiple consumers.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-stream-buffer-multiplexer"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⋈</span
+                ><span class="project-tag">Messaging</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-stream-buffer-multiplexer</h3>
+              <p>Combine producer streams with a shared ordering point.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-shm"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⊞</span
+                ><span class="project-tag">Shared memory</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-shm</h3>
+              <p>Cross-platform shared memory for C++ applications.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-dynamic-buffer"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">▱</span
+                ><span class="project-tag">Buffers</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-dynamic-buffer</h3>
+              <p>Boost.Asio DynamicBuffer adapters for Slick buffers.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-net"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⌁</span
+                ><span class="project-tag">Networking</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-net</h3>
+              <p>HTTP and WebSocket clients built on Boost.Beast.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-socket"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⇄</span
+                ><span class="project-tag">Networking</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-socket</h3>
+              <p>Cross-platform TCP and UDP multicast networking.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-object-pool"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⊡</span
+                ><span class="project-tag">Memory</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-object-pool</h3>
+              <p>Lock-free pools for reusable objects.</p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-logger"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">≡</span
+                ><span class="project-tag">Observability</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-logger</h3>
+              <p>
+                Asynchronous logging with deferred formatting and multiple
+                sinks.
+              </p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="infrastructure"
+              href="https://github.com/SlickQuant/slick-perfmon"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⌁</span
+                ><span class="project-tag">Observability</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-perfmon</h3>
+              <p>
+                Latency instrumentation and background statistics collection.
+              </p>
+              <span class="project-language"
+                >C++ <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="python"
+              href="https://github.com/SlickQuant/slick-queue-py"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⇥</span
+                ><span class="project-tag">Python interoperability</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-queue-py</h3>
+              <p>Share MPMC queues between Python and C++ processes.</p>
+              <span class="project-language"
+                >Python <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="python"
+              href="https://github.com/SlickQuant/slick-stream-buffer-py"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">≋</span
+                ><span class="project-tag">Python interoperability</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-stream-buffer-py</h3>
+              <p>Use C++ compatible byte streams from Python.</p>
+              <span class="project-language"
+                >Python <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-card"
+              data-category="python"
+              href="https://github.com/SlickQuant/slick-stream-buffer-multiplexer-py"
+            >
+              <div class="project-card-top">
+                <span class="project-symbol" aria-hidden="true">⋈</span
+                ><span class="project-tag">Python interoperability</span
+                ><span class="card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>slick-stream-buffer-multiplexer-py</h3>
+              <p>Combine producer streams across Python and C++.</p>
+              <span class="project-language"
+                >Python <span>View project →</span></span
+              >
+            </a>
+            <a
+              class="project-suggestion"
+              id="project-suggestion"
+              href="#ecosystem"
+              data-project-category="infrastructure"
+              hidden
+              ><span class="mono">UNDER THE HOOD</span>
+              <h3>Great systems start<br />with the foundations.</h3>
+              <p>Explore messaging, networking, memory, and observability.</p>
+              <span class="text-link"
+                >Explore infrastructure <span aria-hidden="true">↗</span></span
+              ></a
+            >
+          </div>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-symbol" aria-hidden="true">⌕</span>
+            <h3>No matching projects.</h3>
+            <p>Try “shared memory,” “WebSocket,” or a project name.</p>
+            <button class="text-link" id="reset-search" type="button">
+              Clear search <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="ecosystem-footer">
+            <span>Each project documents its own requirements and license.</span
+            ><a
+              class="text-link"
+              href="https://github.com/orgs/SlickQuant/repositories"
+              >All repositories on GitHub <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        id="get-started"
+        class="getting-started section-pad container"
+        aria-labelledby="start-title"
+      >
+        <div class="start-layout">
+          <div class="start-copy">
+            <p class="eyebrow">03 / MAKE IT YOURS</p>
+            <h2 id="start-title">
+              Start with a library.<br />Build from there.
+            </h2>
+            <p class="section-description">
+              Reach for a single component and get to know it. The README is
+              your guide to installation, examples, and current project status.
+            </p>
+            <div class="start-benefit">
+              <span aria-hidden="true">01</span>
+              <div>
+                <h3>C++ where it counts.</h3>
+                <p>
+                  Queues, byte streams, and networking libraries for the core of
+                  your application.
+                </p>
+              </div>
+            </div>
+            <div class="start-benefit">
+              <span aria-hidden="true">02</span>
+              <div>
+                <h3>Python in the loop.</h3>
+                <p>
+                  Share compatible queues and streams between Python and C++
+                  processes through shared memory.
+                </p>
+              </div>
+            </div>
+            <a
+              class="text-link"
+              href="https://github.com/SlickQuant/slick-queue-py#cpython-interoperability"
+              >Explore interoperability <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="code-panel">
+            <div class="code-header">
+              <span class="mono">YOUR FIRST BUILDING BLOCK</span
+              ><span class="code-dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+            </div>
+            <div
+              class="code-tabs"
+              role="tablist"
+              aria-label="Installation language"
+              hidden
+            >
+              <button
+                type="button"
+                role="tab"
+                id="tab-cpp"
+                aria-controls="panel-cpp"
+                aria-selected="true"
+                tabindex="0"
+                data-code-tab="cpp"
+              >
+                C++ <span>vcpkg</span></button
+              ><button
+                type="button"
+                role="tab"
+                id="tab-python"
+                aria-controls="panel-python"
+                aria-selected="false"
+                tabindex="-1"
+                data-code-tab="python"
+              >
+                Python <span>from source</span>
+              </button>
+            </div>
+            <div
+              class="code-tab-panel"
+              id="panel-cpp"
+              aria-labelledby="tab-cpp"
+            >
+              <div class="code-label">
+                <span class="mono">TERMINAL</span
+                ><button
+                  class="copy-code"
+                  type="button"
+                  data-copy="cpp-install"
+                  aria-label="Copy vcpkg installation command"
+                  hidden
+                >
+                  Copy <span aria-hidden="true">⧉</span>
+                </button>
+              </div>
+              <pre><code id="cpp-install">vcpkg install slick-queue</code></pre>
+              <div class="code-separator"></div>
+              <div class="code-label">
+                <span class="mono">CMakeLists.txt</span>
+              </div>
+              <pre><code><span class="code-function">find_package</span>(slick-queue CONFIG REQUIRED)
+
+<span class="code-function">target_link_libraries</span>(your_target
+    PRIVATE slick::queue
+)</code></pre>
+              <p class="code-note">
+                Configure CMake with your vcpkg toolchain.
+              </p>
+              <a
+                class="code-guide"
+                href="https://github.com/SlickQuant/slick-queue#installation"
+                >Read the installation guide
+                <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <div
+              class="code-tab-panel"
+              id="panel-python"
+              aria-labelledby="tab-python"
+            >
+              <div class="code-label">
+                <span class="mono">TERMINAL / INSTALL FROM SOURCE</span
+                ><button
+                  class="copy-code"
+                  type="button"
+                  data-copy="python-install"
+                  aria-label="Copy Python installation commands"
+                  hidden
+                >
+                  Copy <span aria-hidden="true">⧉</span>
+                </button>
+              </div>
+              <pre><code id="python-install">git clone https://github.com/SlickQuant/slick-queue-py.git
+cd slick-queue-py
+python -m pip install -e .</code></pre>
+              <div class="code-separator"></div>
+              <div class="code-label"><span class="mono">PYTHON</span></div>
+              <pre><code><span class="code-function">from</span> slick_queue_py <span class="code-function">import</span> SlickQueue</code></pre>
+              <p class="code-note">
+                Check the README for platform requirements and compatible C++
+                versions.
+              </p>
+              <a
+                class="code-guide"
+                href="https://github.com/SlickQuant/slick-queue-py#readme"
+                >Read the Python guide <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <div
+              class="copy-status sr-only"
+              role="status"
+              aria-live="polite"
+            ></div>
+            <div class="interop-strip">
+              <span class="language-badge">C++</span
+              ><span class="interop-line" aria-hidden="true"></span>
+              <div>
+                <strong>Shared memory</strong
+                ><span>Queues &amp; byte streams</span>
+              </div>
+              <span class="interop-line" aria-hidden="true"></span
+              ><span class="language-badge">Py</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="community" aria-labelledby="community-title">
+        <div class="container community-inner">
+          <div>
+            <p class="eyebrow">THE NEXT COMMIT COULD BE YOURS</p>
+            <h2 id="community-title">
+              Built in the open.<br />Better together.
+            </h2>
+            <p>
+              Code, documentation, benchmarks, or a well-reported bug.<br
+                class="desktop-break"
+              />
+              There’s more than one way to move the ecosystem forward.
+            </p>
+            <div class="community-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/SlickQuant"
+                >Build with us
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                  /></svg></a
+              ><a
+                class="text-link"
+                href="https://github.com/sponsors/SlickQuant"
+                >Sponsor the work <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+          <div class="community-art" aria-hidden="true">
+            <span class="art-bracket">{</span
+            ><img
+              src="assets/logo-dark.svg"
+              alt=""
+              width="100"
+              height="110"
+            /><span class="art-bracket">}</span>
+          </div>
+        </div>
+      </section>
+      <section
+        id="updates"
+        class="updates container"
+        aria-labelledby="updates-title"
+      >
+        <div>
+          <p class="eyebrow">STAY CONNECTED</p>
+          <h2 id="updates-title">The next chapter, in your inbox.</h2>
+          <p>Project updates and news from Slick Quant.</p>
+        </div>
+        <div class="signup">
+          <form
+            action="https://app.kit.com/forms/8552368/subscriptions"
+            method="post"
           >
-          <button type="submit" class="btn-primary rounded-xl px-6 py-3 font-semibold">
-            Join waitlist
-          </button>
-          <!-- Honeypot -->
-          <input type="text" name="fields[website]" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
-        </form>
-        <!-- END: ConvertKit HTML-only -->
-      </div>
-    </div>
-  </section>
-  <section id="pricing" class="py-20 md:py-24 bg-slate-900/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-10 fade-up">Simple, transparent pricing</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <div class="text-sm font-bold text-sky-300 tracking-widest mb-1">STARTER</div>
-          <div class="text-4xl font-extrabold">$0<span class="text-base text-slate-400">/mo</span></div>
-          <ul class="mt-4 text-slate-300 space-y-2 text-sm"><li>Community + tutorials</li><li>Education labs</li><li>Basic backtests</li></ul>
+            <label class="sr-only" for="email-address">Email address</label
+            ><input
+              id="email-address"
+              type="email"
+              name="email_address"
+              placeholder="Your email address"
+              autocomplete="email"
+              required
+            />
+            <div class="honeypot" aria-hidden="true">
+              <label for="website-field">Leave this field empty</label
+              ><input
+                id="website-field"
+                type="text"
+                name="fields[website]"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+            <button class="button button-secondary" type="submit">
+              Get updates <span aria-hidden="true">→</span>
+            </button>
+          </form>
+          <p>Unsubscribe anytime. <a href="privacy.html">Privacy policy</a></p>
         </div>
-        <div class="glass rounded-2xl p-6 border border-sky-400/40 fade-up">
-          <div class="text-sm font-bold text-sky-300 tracking-widest mb-1">PRO</div>
-          <div class="text-4xl font-extrabold">$29<span class="text-base text-slate-400">/mo</span></div>
-          <ul class="mt-4 text-slate-300 space-y-2 text-sm"><li>AI research agent</li><li>Advanced analytics</li><li>Broker integrations</li></ul>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div>
+          <a class="brand" href="./" aria-label="Slick Quant home"
+            ><img
+              src="assets/logo-dark.svg"
+              alt=""
+              width="32"
+              height="36"
+            /><span
+              >slick<span class="brand-light">quant</span
+              ><span class="brand-period">.</span></span
+            ></a
+          >
+          <p>Trading technology.<br />From the core up.</p>
         </div>
-        <div class="glass rounded-2xl p-6 border border-white/10 fade-up">
-          <div class="text-sm font-bold text-sky-300 tracking-widest mb-1">TEAM</div>
-          <div class="text-4xl font-extrabold">Custom</div>
-          <ul class="mt-4 text-slate-300 space-y-2 text-sm"><li>SSO & admin controls</li><li>Priority support</li><li>On-prem options</li></ul>
+        <nav aria-label="Footer navigation">
+          <div>
+            <span class="mono">EXPLORE</span><a href="#platform">The stack</a
+            ><a href="#ecosystem">All projects</a
+            ><a href="#get-started">Get started</a>
+          </div>
+          <div>
+            <span class="mono">CONNECT</span
+            ><a href="https://github.com/SlickQuant">GitHub ↗</a
+            ><a href="https://github.com/sponsors/SlickQuant">Sponsor ↗</a
+            ><a href="mailto:hello@slickquant.com">Get in touch ↗</a>
+          </div>
+        </nav>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-year>2026</span> SlickQuant LLC</span
+        ><span class="mono">OPEN CODE. ENDLESS POSSIBILITIES.</span>
+        <div>
+          <a href="privacy.html">Privacy</a><a href="#main">Back to top ↑</a>
         </div>
       </div>
-      <p class="text-xs text-slate-400 mt-4">Pricing is indicative and may change at launch.</p>
-    </div>
-  </section>
-  <section id="faq" class="py-20 md:py-24">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 fade-up">FAQ</h2>
-      <div class="space-y-3">
-        <details class="glass rounded-xl border border-white/10 p-4 fade-up"><summary class="font-semibold cursor-pointer">Is SlickQuant for retail or institutions?</summary><p class="text-slate-300 mt-2">Designed for students, retail traders, and small teams; institutions can contact us for tailored solutions.</p></details>
-        <details class="glass rounded-xl border border-white/10 p-4 fade-up"><summary class="font-semibold cursor-pointer">Can I live trade?</summary><p class="text-slate-300 mt-2">Yes—via optional connectors (e.g., cryptocurrency exchanges, Alpaca, Interactive Brokers, etc.). You control the switch with strict risk guards.</p></details>
-        <details class="glass rounded-xl border border-white/10 p-4 fade-up"><summary class="font-semibold cursor-pointer">Do I need prior quant experience?</summary><p class="text-slate-300 mt-2">No. Our education tracks and guided labs help you ramp up quickly.</p></details>
-      </div>
-    </div>
-  </section>
-  <footer class="py-10 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
-      <div class="flex items-center gap-2"><img src="assets/logo.svg" class="w-7 h-7" alt="SlickQuant"><div class="text-sky-600 font-extrabold tracking-widest text-sm">SLICKQUANT</div></div>
-      <nav class="flex items-center gap-5 text-sm text-slate-400"><a href="#features" class="hover:text-white">Features</a><a href="#pricing" class="hover:text-white">Pricing</a><a href="#faq" class="hover:text-white">FAQ</a><a href="privacy.html" class="hover:text-white">Privacy</a></nav>
-      <p class="text-slate-500 text-sm">© <span id="year"></span> SlickQuant LLC</p>
-    </div>
-  </footer>
-  <script>
-    const btn=document.getElementById('menuBtn'); const mm=document.getElementById('mobileMenu');
-    btn?.addEventListener('click',()=>mm.classList.toggle('hidden'));
-    document.getElementById('year').textContent=new Date().getFullYear();
-    const obs=new IntersectionObserver(entries=>{for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target);}}},{threshold:.1}); document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-  </script>
-</body>
+    </footer>
+  </body>
 </html>
