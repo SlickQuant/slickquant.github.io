@@ -1207,15 +1207,15 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   position: relative;
   isolation: isolate;
   min-height: 240px;
 }
 .community-art:before {
   content: "";
-  width: 245px;
-  height: 245px;
+  width: 200px;
+  height: 200px;
   border: 1px solid #2b4d6c;
   border-radius: 50%;
   position: absolute;
@@ -1739,8 +1739,8 @@ h2 {
     font-size: 85px;
   }
   .community-art:before {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     box-shadow:
       0 0 0 25px #17365030,
       0 0 0 50px #17365020;
