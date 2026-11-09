@@ -2321,6 +2321,166 @@ h2 {
     font-size: 8px;
   }
 }
+/* Premium venue features and subscriptions. */
+.flagship-premium-link {
+  display: flex;
+  margin-bottom: 14px;
+}
+.premium {
+  background: #0d151f;
+  border-block: 1px solid var(--line);
+}
+.venue-grid,
+.premium-pricing {
+  display: grid;
+  gap: 24px;
+}
+.venue-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.venue-card,
+.premium-plan {
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid var(--line-light);
+  border-radius: 8px;
+  min-width: 0;
+}
+.venue-card .eyebrow {
+  margin-bottom: 12px;
+}
+.venue-card h3 {
+  font-size: 32px;
+}
+.venue-product {
+  margin-top: 26px;
+}
+.venue-product h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+.venue-product ul {
+  padding-left: 19px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.venue-product li + li {
+  margin-top: 8px;
+}
+.venue-live {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 650;
+}
+.venue-repos {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.venue-repos code {
+  color: var(--text);
+  font-family: var(--mono);
+  overflow-wrap: anywhere;
+}
+.premium-data-note,
+.premium-access-note {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 850px;
+}
+.premium-pricing-heading {
+  margin-block: 48px 24px;
+}
+.premium-pricing-heading h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.premium-pricing-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.premium-pricing {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+.premium-plan {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 44px 24px 26px;
+}
+.premium-plan h4 {
+  margin: 0 0 22px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.premium-plan > p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.premium-plan .premium-price {
+  color: var(--text);
+}
+.premium-price strong {
+  font-size: 36px;
+  font-weight: 650;
+  letter-spacing: -1px;
+}
+.premium-plan .premium-annual {
+  margin-block: 8px 20px;
+}
+.premium-annual strong {
+  color: var(--text);
+}
+.premium-plan > .button {
+  margin-top: 26px;
+  width: 100%;
+  gap: 10px;
+  padding-inline: 12px;
+}
+.premium-bundle {
+  border-color: #609ac7;
+  background: #132436;
+}
+.premium-saving {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+  color: var(--accent);
+  font: 11px/1.5 var(--mono);
+  letter-spacing: 1px;
+}
+.premium-plan .premium-bundle-note {
+  margin-top: 14px;
+  font-size: 11px;
+}
+@media (min-width: 801px) and (max-width: 1150px) {
+  .main-nav {
+    gap: 16px;
+  }
+  .premium-pricing {
+    gap: 16px;
+  }
+  .premium-plan {
+    padding-inline: 18px;
+  }
+}
+@media (max-width: 800px) {
+  .venue-grid,
+  .premium-pricing {
+    grid-template-columns: 1fr;
+  }
+  .venue-card {
+    padding: 26px 24px;
+  }
+}
 /* Sponsorship supports public open-source development. */
 .main-nav .nav-sponsor {
   color: #e1c17d;

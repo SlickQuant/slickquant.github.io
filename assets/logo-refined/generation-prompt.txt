@@ -1,0 +1,8 @@
+Use case: logo-brand.
+Asset type: primary Slick Quant SQ monogram logo, transparent PNG concept suitable for later precise vector construction.
+Input image: the existing Slick Quant monogram is an identity reference. Preserve its recognizable interlocking S/Q idea and navy-and-gold palette, while redesigning its execution.
+Primary request: create ONE exceptionally clean, flat, geometric interlocking SQ monogram for an open-source C++ trading technology company. Evolve the reference into two broad, confidently drawn ribbon-like letterforms with simple rounded-square bends and 45-degree diagonal cuts. An uppercase S must read clearly in navy; a Q must read through the surrounding form with a short decisive lower-right tail in gold. Use a compact near-square silhouette, consistent visual thickness, generous open internal negative spaces, minimal overlaps, and a few intentional transparent separation gaps so the mark reads at small sizes. Retain recognizable continuity with the reference without reproducing its complex folds.
+Style: rigorous professional 2D identity design, precise vector-like curves, restrained and technical, balanced optical weight.
+Palette: exactly solid navy #233F63 and muted warm gold #D7B568. Flat, fully opaque color fills with clean antialiasing.
+Composition: only ONE isolated centered symbol on genuine alpha transparency, occupying about 75 percent of a square canvas, even clear space, no text.
+Constraints: no gradients, metallic texture, bevels, highlights, shadows, lighting, 3D, hairlines, outlines, circles enclosing the logo, charts, arrows, mockups, wordmarks, labels, checkerboard background, watermark, or decorative elements. Create an elegant production-oriented two-color monogram, not a presentation board.
