@@ -2,6 +2,76 @@ document.querySelectorAll("[data-year]").forEach((element) => {
   element.textContent = String(new Date().getFullYear());
 });
 
+// Load Kit on request, then label its dropdowns and select the requested venue.
+const premiumRequest = document.querySelector("#premium-request");
+if (premiumRequest && typeof premiumRequest.showModal === "function") {
+  const embed = document.querySelector("#premium-request-embed");
+  const requestLinks = document.querySelectorAll("[data-premium-venue]");
+  let trigger;
+  let pendingVenue;
+  let embedStarted = false;
+  const normalize = (value) => value.replace(/\s+/g, "").toLowerCase();
+  const prepareForm = () => {
+    premiumRequest.querySelectorAll("select").forEach((select) => {
+      if (!select.labels.length && !select.hasAttribute("aria-label") &&
+          !select.hasAttribute("aria-labelledby")) {
+        const prompt = select.querySelector('option[value=""]')?.textContent.trim();
+        if (prompt) select.setAttribute("aria-label", prompt);
+      }
+      if (pendingVenue) {
+        const option = [...select.options].find((option) =>
+          normalize(option.textContent) === normalize(pendingVenue),
+        );
+        if (option) {
+          select.value = option.value;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          pendingVenue = null;
+        }
+      }
+    });
+  };
+  new MutationObserver(prepareForm).observe(embed, {
+    childList: true,
+    subtree: true,
+  });
+  requestLinks.forEach((link) => {
+    link.setAttribute("aria-haspopup", "dialog");
+    link.setAttribute("aria-controls", "premium-request");
+    link.addEventListener("click", (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      trigger = link;
+      pendingVenue = link.dataset.premiumVenue;
+      premiumRequest.showModal();
+      document.body.classList.add("premium-modal-open");
+      if (!embedStarted) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.dataset.uid = "7674493e92";
+        script.src = "https://slickquant.kit.com/7674493e92/index.js";
+        embedStarted = true;
+        embed.append(script);
+      }
+      prepareForm();
+    });
+  });
+  premiumRequest.querySelector(".premium-request-close").addEventListener("click", () => {
+    premiumRequest.close();
+  });
+  premiumRequest.addEventListener("click", (event) => {
+    if (event.target !== premiumRequest) return;
+    const bounds = premiumRequest.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom) {
+      premiumRequest.close();
+    }
+  });
+  premiumRequest.addEventListener("close", () => {
+    document.body.classList.remove("premium-modal-open");
+    trigger?.focus({ preventScroll: true });
+  });
+}
+
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#main-nav");
 if (menuButton && navigation) {

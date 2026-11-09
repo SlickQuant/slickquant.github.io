@@ -2398,6 +2398,52 @@ h2 {
 .premium-pricing-heading {
   margin-block: 48px 24px;
 }
+.premium-request {
+  width: min(760px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow-y: auto;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line-light);
+  border-radius: 8px;
+}
+.premium-request::backdrop {
+  background: #000b;
+}
+.premium-modal-open {
+  overflow: hidden;
+}
+.premium-request-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.premium-request-header h3 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+.premium-request-close {
+  min-height: 44px;
+  padding: 8px 12px;
+  background: var(--panel-high);
+  color: var(--text);
+  border: 1px solid var(--line-light);
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.premium-request > .premium-data-note {
+  margin-block: 18px;
+}
+.premium-request > .premium-data-note .text-link {
+  display: inline;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .premium-pricing-heading h3 {
   font-size: 26px;
   margin-bottom: 10px;

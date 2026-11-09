@@ -51,8 +51,8 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/site.css" />
-    <script src="assets/site.js" defer></script>
+    <link rel="stylesheet" href="assets/site.css?v=cae73982a9bc" />
+    <script src="assets/site.js?v=ab6027658bd3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -542,14 +542,14 @@
               <p class="premium-price"><strong>$4.99</strong> / month</p>
               <p class="premium-annual">or <strong>$49.99</strong> / year, billed annually</p>
               <p>CME for both slick-trader and slick-sim.</p>
-              <a class="button button-secondary" aria-label="Request Premium access for CME" href="mailto:hello@slickquant.com?subject=CME%20Premium%20access&amp;body=I%20would%20like%20CME%20Premium%20access.%0D%0ABilling%20preference%20(monthly%20or%20annual)%3A%20%0D%0AGitHub%20username%3A%20">Request Premium access <span aria-hidden="true">↗</span></a>
+              <a class="button button-secondary" aria-label="Request Premium access for CME" href="https://slickquant.kit.com/7674493e92" data-premium-venue="CME">Request Premium access <span aria-hidden="true">↗</span></a>
             </article>
             <article class="premium-plan" aria-labelledby="ice-plan-title">
               <h4 id="ice-plan-title">ICE</h4>
               <p class="premium-price"><strong>$4.99</strong> / month</p>
               <p class="premium-annual">or <strong>$49.99</strong> / year, billed annually</p>
               <p>ICE for both slick-trader and slick-sim.</p>
-              <a class="button button-secondary" aria-label="Request Premium access for ICE" href="mailto:hello@slickquant.com?subject=ICE%20Premium%20access&amp;body=I%20would%20like%20ICE%20Premium%20access.%0D%0ABilling%20preference%20(monthly%20or%20annual)%3A%20%0D%0AGitHub%20username%3A%20">Request Premium access <span aria-hidden="true">↗</span></a>
+              <a class="button button-secondary" aria-label="Request Premium access for ICE" href="https://slickquant.kit.com/7674493e92" data-premium-venue="ICE">Request Premium access <span aria-hidden="true">↗</span></a>
             </article>
             <article class="premium-plan premium-bundle" aria-labelledby="bundle-plan-title">
               <span class="premium-saving">SAVE ABOUT 20%</span>
@@ -557,11 +557,23 @@
               <p class="premium-price"><strong>$7.99</strong> / month</p>
               <p class="premium-annual">or <strong>$79.99</strong> / year, billed annually</p>
               <p>Both venues for both slick-trader and slick-sim.</p>
-              <a class="button button-primary" aria-label="Request Premium access for the CME and ICE bundle" href="mailto:hello@slickquant.com?subject=CME%20%2B%20ICE%20bundle%20Premium%20access&amp;body=I%20would%20like%20the%20CME%20%2B%20ICE%20Premium%20bundle.%0D%0ABilling%20preference%20(monthly%20or%20annual)%3A%20%0D%0AGitHub%20username%3A%20">Request Premium access <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary" aria-label="Request Premium access for the CME and ICE bundle" href="https://slickquant.kit.com/7674493e92" data-premium-venue="CME+ICE bundle">Request Premium access <span aria-hidden="true">↗</span></a>
               <p class="premium-bundle-note">Compared with subscribing to CME and ICE separately at the same billing cadence.</p>
             </article>
           </div>
-          <p class="premium-access-note">Email us to arrange payment and private GitHub access. Premium subscriptions are separate from open-source sponsorship.</p>
+          <p class="premium-access-note">Choose Request Premium access to open the form. We’ll follow up to arrange payment and private GitHub access. Premium subscriptions are separate from open-source sponsorship.</p>
+          <dialog id="premium-request" class="premium-request" aria-labelledby="premium-request-title">
+            <div class="premium-request-header">
+              <h3 id="premium-request-title">Premium access request</h3>
+              <button type="button" class="premium-request-close" aria-label="Close Premium request form" autofocus>Close <span aria-hidden="true">×</span></button>
+            </div>
+            <p class="premium-data-note">Choose your venue and billing preference, and enter your email address and GitHub username. Confirm your request using the email from Kit.</p>
+            <div id="premium-request-embed"></div>
+            <p class="premium-data-note">
+              If the form doesn’t load, <a class="text-link" href="https://slickquant.kit.com/7674493e92">open the request form directly ↗</a>.
+              Your request is processed by Kit. <a class="text-link" href="privacy.html">Privacy policy</a>.
+            </p>
+          </dialog>
         </div>
       </section>
       <section
