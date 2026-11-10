@@ -2,7 +2,7 @@ document.querySelectorAll("[data-year]").forEach((element) => {
   element.textContent = String(new Date().getFullYear());
 });
 
-// Load Kit on request, then label its dropdowns and select the requested venue.
+// Load Kit on request and adapt the request form to Premium licensing.
 const premiumRequest = document.querySelector("#premium-request");
 if (premiumRequest && typeof premiumRequest.showModal === "function") {
   const embed = document.querySelector("#premium-request-embed");
@@ -12,6 +12,20 @@ if (premiumRequest && typeof premiumRequest.showModal === "function") {
   let embedStarted = false;
   const normalize = (value) => value.replace(/\s+/g, "").toLowerCase();
   const prepareForm = () => {
+    // Keep the embed consistent while the hosted Kit form is updated separately.
+    embed.querySelectorAll('input[name="fields[github_username]"]').forEach((input) => {
+      input.closest(".formkit-field")?.remove();
+    });
+    const textNodes = document.createTreeWalker(embed, NodeFilter.SHOW_TEXT);
+    while (textNodes.nextNode()) {
+      const node = textNodes.currentNode;
+      if (node.parentElement.closest("script, style")) continue;
+      const updated = node.nodeValue
+        .replace(/private GitHub access/g, "compiled library delivery and runtime licensing")
+        .replace(/GitHub access/g, "runtime licensing")
+        .replace(/Premium access/g, "Premium license");
+      if (updated !== node.nodeValue) node.nodeValue = updated;
+    }
     premiumRequest.querySelectorAll("select").forEach((select) => {
       if (!select.labels.length && !select.hasAttribute("aria-label") &&
           !select.hasAttribute("aria-labelledby")) {
@@ -33,6 +47,7 @@ if (premiumRequest && typeof premiumRequest.showModal === "function") {
   new MutationObserver(prepareForm).observe(embed, {
     childList: true,
     subtree: true,
+    characterData: true,
   });
   requestLinks.forEach((link) => {
     link.setAttribute("aria-haspopup", "dialog");

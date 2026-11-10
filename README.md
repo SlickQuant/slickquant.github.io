@@ -33,7 +33,9 @@ Project descriptions are grounded in the [SlickQuant public organization profile
 
 ## Premium venue subscriptions
 
-The homepage's `#premium` section presents CME and ICE features for slick-trader and slick-sim. Each venue subscription covers both products through private GitHub extensions: `slick-trader-cme` and `slick-sim-cme`, or `slick-trader-ice` and `slick-sim-ice`. The public core projects remain open source; private repository names are displayed without inaccessible repository links.
+The homepage's `#premium` section presents CME and ICE features for slick-trader and slick-sim. Each venue subscription covers compiled libraries for both products: `slick-trader-cme` and `slick-sim-cme`, or `slick-trader-ice` and `slick-sim-ice`. Premium delivery includes public headers and integration examples, without implementation source code or private repository access. The public core projects remain open source.
+
+Premium use requires a valid runtime license. Subscriptions include license renewals, updates and integration support for the selected venues. Cancellation preserves validity through the paid period end; continued use after that requires renewal. This website describes the intended licensing offer; runtime enforcement and binary packaging must be implemented and validated in the Premium projects before customer delivery.
 
 | Subscription | Monthly (USD) | Yearly (USD, billed annually) |
 | --- | ---: | ---: |
@@ -45,15 +47,15 @@ The bundle includes both venues for both products and saves about 20% compared w
 
 CME features include iLink 3 order entry and MDP 3.0 market data. ICE features include BOE order entry, BUS discovery and iMpact market data. Both trading extensions offer feed/session recovery, persisted working orders and fill journaling. Both simulation extensions receive live venue market data to build books for simulated execution, and serve simulated order-entry and multicast market data protocols. ICE simulation supports outright futures. Live feeds require the user's own venue market data access; simulation does not place live exchange orders or model market impact. Feature copy follows the extension READMEs and known-gap documentation.
 
-Each **Request Premium access** link opens the Kit form in a modal dialog and selects the corresponding venue. The form stays hidden and Kit's embed is not loaded until a request button is clicked. Visitors choose their billing preference and provide their email address and GitHub username. The official embed uses UID `7674493e92` and `https://slickquant.kit.com/7674493e92/index.js`; Kit currently posts to form `10163580`. Escape, Close, or a click on the backdrop closes the dialog and returns focus to the request button. Native dialog behavior keeps keyboard focus inside while it is open. Without JavaScript or dialog support, the buttons open `https://slickquant.kit.com/7674493e92` directly. The dialog also includes that link if the embed is blocked. The form is separate from the newsletter form (`8552368`). Payment and repository access are arranged manually after the request; there is no checkout or automatic provisioning.
+Each **Request Premium license** link opens the Kit form in a modal dialog and selects the corresponding venue. The form stays hidden and Kit's embed is not loaded until a request button is clicked. Visitors choose their venue and billing preference and provide their email address. The official embed uses UID `7674493e92` and `https://slickquant.kit.com/7674493e92/index.js`; Kit currently posts to form `10163580`. Escape, Close, or a click on the backdrop closes the dialog and returns focus to the request button. Native dialog behavior keeps keyboard focus inside while it is open. Without JavaScript or dialog support, the buttons open `https://slickquant.kit.com/7674493e92` directly. The dialog also includes that link if the embed is blocked. The form is separate from the newsletter form (`8552368`). Payment, compiled library delivery and runtime license issuance are arranged manually after the request; there is no checkout or automatic provisioning.
 
-Manage request fields, confirmation emails and success messaging in the Kit form builder. Map the GitHub username input to a dedicated `github_username` custom field; the initial published form labels the input correctly but saves it to `first_name`, which should be corrected in Kit. Keep Premium requests separate from newsletter marketing and sponsorship. Verify owner notifications separately, including requests from existing subscribers; the website does not send notification emails itself.
+Manage request fields, confirmation emails and success messaging in the Kit form builder. Remove the legacy GitHub username field and replace private repository access wording with compiled library delivery and runtime licensing in Kit itself. The embedded form temporarily removes the hosted GitHub username field and adapts its repository-access wording to licensing. This also covers asynchronously inserted confirmation text. The direct-form fallback and emails remain controlled by Kit; changes must be published in Kit for both the embed and direct-form fallback. Keep email, venue and billing preference fields, and preserve their current option values for venue preselection. Keep Premium requests separate from newsletter marketing and sponsorship. Verify owner notifications separately, including requests from existing subscribers; the website does not send notification emails itself.
 
 ## Sponsorship
 
 The homepage’s `#sponsorship` section explains support for public maintenance, documentation, and continued development. Links in the navigation, hero, community section, and footer lead to it. The **Become a sponsor** button opens [Slick Quant on GitHub Sponsors](https://github.com/sponsors/SlickQuant), where visitors can choose monthly or one-time contributions.
 
-Sponsorship payments are handled on GitHub Sponsors and support the public projects. Premium venue subscriptions are requested through Kit, with payment and access arranged separately by email. Sponsorship does not grant Premium access.
+Sponsorship payments are handled on GitHub Sponsors and support the public projects. Premium venue subscriptions are requested through Kit, with payment, library delivery and licensing arranged separately by email. Sponsorship does not grant Premium access.
 
 ## Email subscriptions
 
@@ -67,8 +69,8 @@ page before enabling the redirect, then save and publish the Kit form settings.
 This is the destination after clicking the email confirmation button, not the
 immediate form-submission redirect under General settings.
 
-The Premium confirmation page explains the payment and private GitHub access
-follow-up without claiming an active subscription. It is marked `noindex` and
+The Premium confirmation page explains the payment, compiled library delivery
+and runtime licensing follow-up without claiming an active subscription. It is marked `noindex` and
 excluded from the sitemap. It is a static acknowledgement page; Kit handles email
 verification. Kit's redirect must be configured in the account separately from
 deploying this repository.
